@@ -17,7 +17,7 @@ const MetaMask = () => {
   const [paymentAccountDetail, setPaymentAccountDetail] = useState();
 
   useEffect(() => {
-    if (balances) {
+    if (balances && balances.length) {
       setAccountData(
         balances?.find(
           (b) =>

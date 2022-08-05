@@ -12,7 +12,7 @@ import { useSnap } from '../hooks/useSnap';
 import { AuthenticationContext } from './AuthenticationProvider';
 
 export const DataContext = createContext({
-  createRedirectUrl: '',
+  createRedirectUrl: ({ baseUrl }: { baseUrl: string }) => '',
   balances: {},
   tokens: {},
   profile: {},
