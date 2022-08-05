@@ -1,7 +1,7 @@
 {
-  "name": "metamask-snaps-ts-nextjs",
-  "version": "1.1.0",
-  "description": "The 'Hello, world!' of MetaMask Snaps.",
+  "name": "@monerium/snap",
+  "version": "0.0.1",
+  "description": "Be your own bank.",
   "repository": {
     "type": "git",
     "url": "https://github.com/MetaMask/snap-template.git"

@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "0.0.1",
   "proposedName": "Monerium Snap",
   "description": "Fiat-to-crypto, crypto-to-fiat integration",
   "repository": {
@@ -12,7 +12,7 @@
       "npm": {
         "filePath": "dist/bundle.js",
         "iconPath": "images/icon.svg",
-        "packageName": "metamask-snaps-ts-nextjs",
+        "packageName": "@monerium/snap",
         "registry": "https://registry.npmjs.org/"
       }
     }

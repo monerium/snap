@@ -1,4 +1,4 @@
-# @metamask/template-typescript-snap with Next.js
+# @monerium/snap
 
 ## Usage
 
