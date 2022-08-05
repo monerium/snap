@@ -134,6 +134,78 @@ export interface AccessTokenResponse {
   userId: string; //uuid
 }
 
+export type Domain = 'treasury' | 'emoney';
+
+export interface Fee {
+  provider: string;
+  source: string;
+  currency: string;
+  amount: string;
+  meta?: {
+    domain: Domain;
+  };
+}
+export type OrderKind = 'issue' | 'redeem' | 'send' | 'receive';
+export type OrderState = 'placed' | 'pending' | 'processed' | 'rejected';
+
+export interface Counterpart {
+  identifier: IbanIdentifier | ScanIdentifier;
+  details: {
+    name?: string;
+    firstName?: string;
+    lastName?: string;
+    companyName?: string;
+    country?: string;
+  };
+}
+
+// Treasury identifier
+export type Standard = 'iban' | 'scan';
+
+export interface Identifier {
+  standard: Standard;
+  bic?: string;
+}
+
+export interface IbanIdentifier extends Identifier {
+  iban: string;
+}
+export interface ScanIdentifier extends Identifier {
+  sortCode: string; // 6-digits
+  accountNumber: string; // 8-digits
+}
+// Order
+export interface Order {
+  id: UniqueId;
+  profile: UniqueId;
+  kind: OrderKind;
+  address: string;
+  amount: string;
+  currency: CurrencyCode;
+  batchId?: string;
+  accountId: UniqueId;
+  treasuryAccountId?: UniqueId;
+  counterpart?: Counterpart;
+  txHash?: string;
+  memo?: string;
+  message?: string;
+  rejectedReason?: string;
+  signature?: Signature;
+  fees?: Fee[];
+  totalFee: string;
+  supportingDocumentId?: string;
+  meta: {
+    state: OrderState;
+    placedBy: string;
+    placedAt: string;
+    approvedAt?: string;
+    rejectedAt?: string;
+    confirmedAt?: string;
+    receivedAmount?: string;
+    sentAmount?: string;
+  };
+}
+
 export interface Monerium {
   getTokens: () => Promise<Token[]>;
   getProfile: (profileId: UniqueId) => Promise<Profile>;

@@ -8,6 +8,7 @@ import {
   ConnectProps,
   CustomerAuthProps,
   IBAN,
+  Order,
   Profile,
   Signature,
   Token,
@@ -26,7 +27,7 @@ type State = {
   profile?: Profile;
   balances?: Balances[];
   tokens?: Token[];
-  orders?: any; // TODO
+  orders?: Order[];
 };
 
 const updateState = async (newState: State) => {
@@ -38,7 +39,7 @@ const updateState = async (newState: State) => {
 
 let access_token: string;
 
-module.exports.onRpcRequest = async ({ request }) => {
+export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
   const currentDateTime = new Date().toISOString();
 
   const state: State | undefined | null = await wallet.request({
@@ -99,6 +100,8 @@ module.exports.onRpcRequest = async ({ request }) => {
       return await placeOrder(request);
     case 'emi_getOrders':
       return await getOrders();
+    case 'emi_getSelected':
+      return await getSelected();
     default:
       throw new Error(request?.method + 'Method not found.');
   }
@@ -208,7 +211,7 @@ module.exports.onRpcRequest = async ({ request }) => {
     if (!state?.profile?.id) {
       return { code: 404, status: 'Not Found', message: 'ProfileId Missing.' };
     }
-    let orders;
+    let orders: Order[];
     try {
       orders = await emi.fetchOrders(
         state?.profile?.id,
@@ -222,6 +225,25 @@ module.exports.onRpcRequest = async ({ request }) => {
       orders: orders,
     });
     return orders;
+  }
+
+  async function getSelected() {
+    const selectedAccounts = state?.profile?.accounts?.map((account) => {
+      return account.address === wallet.selectedAddress;
+    });
+    const selectedOrders = state?.orders?.map((order) => {
+      return order.address === wallet.selectedAddress;
+    });
+
+    const selectedBalances = state?.balances?.map((balance) => {
+      return balance.address === wallet.selectedAddress;
+    });
+
+    return {
+      accounts: selectedAccounts,
+      orders: selectedOrders,
+      balances: selectedBalances,
+    };
   }
 
   async function placeOrder({
