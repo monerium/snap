@@ -15302,6 +15302,7 @@ __metadata:
     "@metamask/snaps-cli": ^0.32.2
     "@metamask/snaps-types": ^0.32.2
     "@metamask/snaps-ui": ^0.32.2
+    "@monerium/sdk": ^2.4.1
     "@typescript-eslint/eslint-plugin": ^5.33.0
     "@typescript-eslint/parser": ^5.33.0
     buffer: ^6.0.3

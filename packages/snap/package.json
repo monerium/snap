@@ -29,6 +29,7 @@
   "dependencies": {
     "@metamask/snaps-types": "^0.32.2",
     "@metamask/snaps-ui": "^0.32.2",
+    "@monerium/sdk": "^2.4.1",
     "buffer": "^6.0.3"
   },
   "devDependencies": {
