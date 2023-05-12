@@ -26,15 +26,14 @@
     "test": "echo \"TODO\""
   },
   "dependencies": {
-    "ethers": "^6.3.0",
-    "socket.io-client": "^4.6.1"
+    "@monerium/sdk": "^2.4.1",
+    "ethers": "^6.3.0"
   },
   "devDependencies": {
     "@metamask/eslint-config": "^10.0.0",
     "@metamask/eslint-config-jest": "^10.0.0",
     "@metamask/eslint-config-nodejs": "^10.0.0",
     "@metamask/eslint-config-typescript": "^10.0.0",
-    "@monerium/sdk": "^2.4.1",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "eslint": "^8.21.0",
