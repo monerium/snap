@@ -22,6 +22,7 @@ import { getState } from './state';
 emi().getInstance();
 
 export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
+  console.log('onRpcRequest', origin);
   switch (request.method) {
     case 'get_state':
       return getState();
