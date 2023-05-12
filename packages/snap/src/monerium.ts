@@ -1,6 +1,5 @@
 import { panel, text } from '@metamask/snaps-ui';
 import { Balances, MoneriumClient, PaymentStandard } from '@monerium/sdk';
-import { ethers } from 'ethers';
 import { AuthFlowParams, AuthParams, PlaceOrderParams } from './types';
 import { getState, updateState } from './state';
 
