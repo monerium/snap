@@ -29,16 +29,23 @@ jobs:
         with:
           path: ${{ steps.yarn-cache-dir.outputs.YARN_CACHE_DIR }}
           key: yarn-cache-${{ runner.os }}-${{ steps.yarn-version.outputs.YARN_VERSION }}-${{ hashFiles('yarn.lock') }}
-      - run: yarn --frozen-lockfile
+      - run: yarn install --immutable
       - run: yarn build
       - run: yarn lint
       - run: yarn test
-#      - name: Validate RC changelog
-#        if: ${{ startsWith(github.head_ref, 'release/') }}
-#        run: yarn auto-changelog validate --rc
-#      - name: Validate changelog
-#        if: ${{ !startsWith(github.head_ref, 'release/') }}
-#        run: yarn auto-changelog validate
+      - name: Require clean working directory
+        shell: bash
+        run: |
+          if ! git diff --exit-code; then
+            echo "Working tree dirty after building"
+            exit 1
+          fi
+  #      - name: Validate RC changelog
+  #        if: ${{ startsWith(github.head_ref, 'release/') }}
+  #        run: yarn auto-changelog validate --rc
+  #      - name: Validate changelog
+  #        if: ${{ !startsWith(github.head_ref, 'release/') }}
+  #        run: yarn auto-changelog validate
   all-jobs-pass:
     name: All jobs pass
     runs-on: ubuntu-20.04

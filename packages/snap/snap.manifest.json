@@ -1,0 +1,32 @@
+{
+  "version": "0.1.0",
+  "description": "Monerium - Electronic Money Issuer",
+  "proposedName": "Monerium",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
+  },
+  "source": {
+    "shasum": "oZ51l02VbPzMXdPcpYR8WXO+nEhiSFOJwMsJNbPFN4M=",
+    "location": {
+      "npm": {
+        "filePath": "dist/bundle.js",
+        "iconPath": "images/icon.svg",
+        "packageName": "snap",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
+  },
+  "initialPermissions": {
+    "snap_dialog": {},
+    "endowment:rpc": {
+      "dapps": true,
+      "snaps": false
+    },
+    "endowment:network-access": {},
+    "snap_manageState": {},
+    "endowment:long-running": {},
+    "endowment:ethereum-provider": {}
+  },
+  "manifestVersion": "0.1"
+}
